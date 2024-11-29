@@ -15,9 +15,18 @@ public class FirstPage extends XPage {
   private JLabel label;
   private JPanel firstPageGUI;
   private JButton moveToSecondPageButton;
+  private JButton moveToBookSearchPageButton;
 
   public FirstPage(JRIApp app) {
     super(PAGE_NAME);
+
+    moveToBookSearchPageButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        FirstScenario scenario = (FirstScenario) app.getScenarioMgr().getCurScene().getScenario();
+        scenario.dispatchMoveToBookSearchPageButtonPress();
+      }
+    });
 
     moveToSecondPageButton.addActionListener(new ActionListener() {
       @Override

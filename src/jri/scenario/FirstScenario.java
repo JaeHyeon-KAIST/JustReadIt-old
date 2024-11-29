@@ -40,6 +40,13 @@ public class FirstScenario extends XScenario {
     }
   }
 
+  public void dispatchMoveToBookSearchPageButtonPress() {
+    // 현재 활성화된 씬에 따라 동작 분기
+    if (this.getApp().getScenarioMgr().getCurScene() == Scene1.mSingleton) {
+      Scene1.mSingleton.onMoveToBookSearchPageButtonPress();
+    }
+  }
+
   public static class Scene1 extends JRIScene {
     //  singleton
     private static Scene1 mSingleton = null;
@@ -57,6 +64,10 @@ public class FirstScenario extends XScenario {
 
     private Scene1(XScenario scenario) {
       super(scenario);
+    }
+
+    public void onMoveToBookSearchPageButtonPress() {
+      XCmdToChangeScene.execute(this.mScenario.getApp(), BookSearchScenario.Scene1.getSingleton(), this);
     }
 
     public void onMoveToSecondPageButtonPress() {
